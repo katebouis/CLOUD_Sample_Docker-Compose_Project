@@ -1,11 +1,51 @@
 import './HomePage.css';
 import { Link } from 'react-router-dom';
+import { getNFTById } from '../api/NFTApi';
+import { useState, useEffect } from 'react';
 
 export const HomePage = () => {
+
+
+    const [NFT, setNFT] = useState(undefined);
+
+    var id = 4;
+    var NFTArray = [];
+
+    // useEffect(()=>{
+    //     getNFTById(id).then(x => setNFT(x));
+    //     NFTArray.push(NFT);
+    // },[id]);
+
+    if(id < 16){
+        return<>Loading...</>
+    }
+    while (id < 16){
+        getNFTById(id).then(x => setNFT(x));
+        NFTArray.push(NFT);
+        console.log(NFT);
+        id++;
+    }
 
     return <div className="container my-4">
         <h1 className="header-align">Discover, collect, and sell extra ordinary NFTs</h1>
             <div className="container mt-4 d-flex">
+                {/* {
+                    NFTArray.map((theNFT, index) => 
+                    <div className="card mx-4 mb-4">
+                    <Link to='/NFT-details' className="NFT">
+                    <img className="card-img-top" src={theNFT.image_url} alt="Card cap"></img>
+                    </Link>
+                        <div className="card-body">
+                            <Link to='/NFT-details' className="NFT"><h5 className="card-title">Art title</h5></Link>
+                            <p className="card-text">Author</p>
+                            <p className="card-text">Description</p>
+                            <p className="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                    </div>
+                )
+                } */}
+
+
 
                 <div className="card mx-4 mb-4">
                     <Link to='/NFT-details' className="NFT">

@@ -24,7 +24,7 @@ export const NFTDetail = ({ }) => {
     return<>
         <div className="container">
             <div className="image_url">
-                <img className="rounded float-start" src="	https://5.imimg.com/data5/GV/NJ/MY-20565232/modern-art-paintings-250x250.jpg" alt="Card cap"></img>
+                <img className="rounded float-start" src={NFT[0].image_url} alt="Card cap" width="40%"></img>
             </div>
             <div className="NFTInfo">
                 <div className="NFT"><h3>ID: {NFT[0].id}</h3></div>
