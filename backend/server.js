@@ -25,7 +25,9 @@ const { createModelsMiddleware } = require('./middleware/model-middleware');
 const usersRoutes = require('./routes/users');
 const sessionRoutes = require('./routes/session');
 const accountRoutes = require('./routes/account');
-const adminRoutes = require('./routes/admin');
+const adminRoutes = require('./routes/admin'); 
+const ubRoutes = require('./routes/messages');
+const likeRoutes = require('./routes/likeRecord'); 
 
 // create a logger object.  Using logger is preferable to simply writing to the console.
 const logger = log({ console: true, file: false, label: config.name });
@@ -44,8 +46,8 @@ app.use('/session', sessionRoutes);
 app.use('/account', accountRoutes);
 
 app.use('/users', authenticateWithClaims(['user']), usersRoutes);
-app.use('/admin', authenticateWithClaims(['admin']), adminRoutes);
-
+app.use('/admin', authenticateWithClaims(['admin']), adminRoutes); 
+app.use('/ub', authenticateWithClaims(['unblocked']), ubRoutes);  
 
 app.get('/health', (request, response, next) => {
   const responseBody = { status: 'up', port };
